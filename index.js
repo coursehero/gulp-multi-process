@@ -36,7 +36,8 @@ var gulpMultiProcess = function(tasks, cb, cpuRatio, failOnFirstError) {
     });
     tasks.forEach(each);
   } else {
-    cpusNumber = Math.floor(require('os').cpus().length * cpuRatio);
+    cpusNumber = Math.floor( (process.env.GULP_MULTI_MAX_PROC ? 
+      process.env.GULP_MULTI_MAX_PROC : require('os').cpus().length) * cpuRatio);
     q = require('async.queue');
     q = q(function (taskName, callback) {
       createWorker(

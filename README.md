@@ -44,3 +44,4 @@ gulp.task('multi', function(cb) {
 
 Run task in multiple processes is not always good for performance because spawn a different node processes is slow. It also depends on how long time it takes to require your `gulpfile`.
 Keep in mind that you can pass a ratio (i.e `0.5`) as a third parameter to `gulpMultiProcess` fn in order to get optimal preformance. This will launch one process per core (adjusted by the ratio), and if there will be more of them than the number of usable cores on your machine it will put others into queue. When one process will finish its operation, the next one will be on launched.
+The number of sub process can be specified using an environment variable called GULP_MULTI_MAX_PROC - otherwise os.cpus() is used to set the number of sub process.  Which ever value is used it is scaled using the ratio.
